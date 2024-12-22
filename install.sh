@@ -9,9 +9,12 @@ sudo apt-get install -y ripgrep
 #sudo tar -C /opt -xzf nvim-linux64.tar.gz
 #rm nvim-linux64.tar.gz
 
+rm -rf ~/.config/nvim
+cp -r nvim ~/.config/nvim
+
 # TMUX
 
-cp tmux.conf ~/.tmux.conf
+#cp tmux.conf ~/.tmux.conf
 #rm -rf ~/.config/tmux/plugins/catppuccin
 #mkdir -p ~/.config/tmux/plugins/catppuccin
 #git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
@@ -19,8 +22,6 @@ cp tmux.conf ~/.tmux.conf
 # BASHRC
 
 cp bashrc ~/.bashrc
-
-rm -rf "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 
 # fuzzy history search
 #rm -rf ~/.fzf
