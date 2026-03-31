@@ -709,43 +709,45 @@ require('lazy').setup({
         },
       }
 
-      require('java').setup {
-        -- Your custom jdtls settings goes here
-      }
+      if vim.fn.has("win32") == 1 then
+        require('java').setup {
+          -- Your custom jdtls settings goes here
+        }
 
-      require('lspconfig').jdtls.setup {
-        cmd = {
-          'C:\\Users\\schierbach.leon\\.jdks\\temurin-21.0.9\\bin\\java',
-          '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-          '-Dosgi.bundles.defaultStartLevel=4',
-          '-Declipse.product=org.eclipse.jdt.ls.core.product',
-          '-Dlog.level=ALL',
-          '-Xmx1G',
-          '--add-modules=ALL-SYSTEM',
-          '-Djava.net.useSystemProxies=true',
-          '-jar',
-          'C:\\jdt-language-server\\plugins\\org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar',
-          '-configuration',
-          'C:\\jdt-language-server\\config_win',
-          '-data',
-          'C:\\jdt-language-server\\data',
-        },
-        settings = {
-          java = {
-            home = 'C:\\Users\\schierbach.leon\\.jdks\\temurin-21.0.9',
-            eclipse = {
-              downloadSources = true,
-            },
-            configuration = {
-              updateBuildConfiguration = 'interactive',
-              runtimes = {
-                name = 'JavaSE-21',
-                path = 'C:\\Users\\schierbach.leon\\.jdks\\temurin-21.0.9\\bin',
-              },
-            },
-          },
-        },
-      }
+        require('lspconfig').jdtls.setup {
+	  cmd = {
+  	    'C:\\Users\\schierbach.leon\\.jdks\\temurin-21.0.9\\bin\\java',
+	    '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+	    '-Dosgi.bundles.defaultStartLevel=4',
+	    '-Declipse.product=org.eclipse.jdt.ls.core.product',
+	    '-Dlog.level=ALL',
+	    '-Xmx1G',
+	    '--add-modules=ALL-SYSTEM',
+	    '-Djava.net.useSystemProxies=true',
+	    '-jar',
+	    'C:\\jdt-language-server\\plugins\\org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar',
+	    '-configuration',
+	    'C:\\jdt-language-server\\config_win',
+	    '-data',
+	    'C:\\jdt-language-server\\data',
+	  },
+	  settings = {
+	    java = {
+	      home = 'C:\\Users\\schierbach.leon\\.jdks\\temurin-21.0.9',
+	      eclipse = {
+	        downloadSources = true,
+	      },
+	      configuration = {
+	        updateBuildConfiguration = 'interactive',
+	        runtimes = {
+		  name = 'JavaSE-21',
+		  path = 'C:\\Users\\schierbach.leon\\.jdks\\temurin-21.0.9\\bin',
+	        },
+	      },
+	    },
+	  },
+        }
+      end
 
       -- The following loop will configure each server with the capabilities we defined above.
       -- This will ensure that all servers have the same base configuration, but also

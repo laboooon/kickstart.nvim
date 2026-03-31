@@ -2,8 +2,10 @@ return {
   "akinsho/toggleterm.nvim",
   version = "*",
   config = function()
-    vim.cmd [[let &shell = '"C:/Program Files/Git/bin/bash.exe"']]
-    vim.cmd [[let &shellcmdflag = '-s']]
+    if vim.fn.has("win32") == 1 then
+      vim.cmd [[let &shell = '"C:/Program Files/Git/bin/bash.exe"']]
+      vim.cmd [[let &shellcmdflag = '-s']]
+    end
 
     require("toggleterm").setup({
       open_mapping = '<C-_>',
