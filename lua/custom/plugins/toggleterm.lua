@@ -2,7 +2,7 @@ return {
   "akinsho/toggleterm.nvim",
   version = "*",
   config = function()
-    if vim.fn.has("win32") then
+    if vim.fn.has("win32") == 1 then
       if vim.fn.executable("bash") then
         vim.cmd [[let &shell = '"C:/Program Files/Git/bin/bash.exe"']]
         vim.cmd [[let &shellcmdflag = '-c']]
@@ -12,6 +12,8 @@ return {
         vim.cmd [[let &shellpipe = '> %s 2>&1']]
         vim.cmd [[set shellslash]]
       end
+    else
+      vim.o.shell = os.getenv("SHELL") or "/bin/bash"
     end
 
     require("toggleterm").setup({
